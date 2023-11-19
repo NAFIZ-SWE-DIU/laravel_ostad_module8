@@ -6,7 +6,7 @@ class ProfileController extends Controller
 {
     public function index($id)
     {
-        $name = "Nafizul Islam";
+        $name = "Donal Trump";
         $age = "25";
 
         $data = [
