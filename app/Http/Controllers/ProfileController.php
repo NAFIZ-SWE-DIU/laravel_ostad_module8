@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Response;
+
 class ProfileController extends Controller
 {
     public function index($id)
     {
-        $name = "Donal Trump";
-        $age = "25";
+        $name = "Donald Trump";
+        $age = "75";
 
         $data = [
             'id' => $id,
@@ -23,8 +25,9 @@ class ProfileController extends Controller
         $secure = false;
         $httpOnly = true;
 
-        setcookie($cookieName, $cookieValue, time() + ($minutes * 60), $path, $domain, $secure, $httpOnly);
+        $response = new Response($data);
+        $response->cookie($cookieName, $cookieValue, $minutes, $path, $domain, $secure, $httpOnly);
 
-        return response($data)->cookie($cookieName, $cookieValue, $minutes)->setStatusCode(200);
+        return $response;
     }
 }
